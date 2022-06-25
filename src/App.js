@@ -1,5 +1,6 @@
 import React from 'react';
-import Form from './components/Forms';
+import Card from './components/Card';
+import Form from './components/Form';
 
 class App extends React.Component {
   render() {
@@ -7,6 +8,7 @@ class App extends React.Component {
       <div>
         <h1>Tryunfo</h1>
         <Form />
+        <Card />
       </div>
     );
   }
