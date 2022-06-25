@@ -8,15 +8,47 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     };
+  }
+
+  buttonDisabled = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+    } = this.state;
+
+    const max = 90;
+    const min = 0;
+    const total = 210;
+
+    const notEmpty = cardName !== '' && cardDescription !== '' && cardImage !== '';
+
+    const soma = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= total;
+
+    const maxInputValue = Number(cardAttr1) <= max
+      && Number(cardAttr2) <= max
+      && Number(cardAttr3) <= max;
+
+    const minInputValue = Number(cardAttr1) >= min
+      && Number(cardAttr2) >= min
+      && Number(cardAttr3) >= min;
+
+    if (notEmpty && soma && maxInputValue && minInputValue) {
+      return false;
+    }
+    return true;
   }
 
   onInputChange = ({ target }) => {
@@ -25,7 +57,10 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
-    });
+    },
+    () => this.setState({
+      isSaveButtonDisabled: this.buttonDisabled(),
+    }));
   }
 
   render() {
