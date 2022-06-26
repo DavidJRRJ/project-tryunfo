@@ -98,6 +98,7 @@ class App extends React.Component {
         cardTrunfo: false,
       });
     });
+    console.log(cardList);
   }
 
   render() {
@@ -111,7 +112,6 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       hasTrunfo,
-      cardList,
       isSaveButtonDisabled,
     } = this.state;
     return (
@@ -126,7 +126,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          hasTrunfo={ cardList }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
