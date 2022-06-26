@@ -14,7 +14,6 @@ class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
-      hasTrunfo: false,
       isSaveButtonDisabled: true,
       cardList: [],
     };
@@ -98,7 +97,6 @@ class App extends React.Component {
         cardTrunfo: false,
       });
     });
-    console.log(cardList);
   }
 
   render() {
@@ -111,9 +109,10 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      hasTrunfo,
+      cardList,
       isSaveButtonDisabled,
     } = this.state;
+    const trunfo = cardList.find((card) => card.cardTrunfo === true);
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -126,7 +125,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
+          hasTrunfo={ trunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
@@ -141,6 +140,19 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        {cardList.map((c) => (
+          <Card
+            key={ c }
+            cardName={ c.cardName }
+            cardDescription={ c.cardDescription }
+            cardAttr1={ c.cardAttr1 }
+            cardAttr2={ c.cardAttr2 }
+            cardAttr3={ c.cardAttr3 }
+            cardImage={ c.cardImage }
+            cardRare={ c.cardRare }
+            cardTrunfo={ c.cardTrunfo }
+          />
+        ))}
       </div>
     );
   }

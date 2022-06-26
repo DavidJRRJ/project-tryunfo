@@ -24,7 +24,7 @@ class Form extends React.Component {
           <input
             data-testid="name-input"
             name="cardName"
-            id="name"
+            id="cardName"
             type="text"
             value={ cardName }
             onChange={ onInputChange }
@@ -98,7 +98,7 @@ class Form extends React.Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        {hasTrunfo.find((card) => card.cardTrunfo === true) ? (
+        {hasTrunfo ? (
           <p>Você já tem um Super Trunfo em seu baralho</p>
         ) : (
           <label htmlFor="trunfo">
